@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <div className='footer' id='footer'>
@@ -27,7 +27,8 @@ const Footer = () => {
                         {/* <li>Entrega</li> */}
                         <li>Política de privacidad</li>
                     </ul>
-                    <button onClick={() => navigate("/myorders")}>Admin</button>
+                    {/* <button onClick={() => navigate("/myorders")}>Admin</button> */}
+                    <button>Admin</button>
                 </div>
                 <div className='footer-content-right'>
                     <h2>Contacto</h2>

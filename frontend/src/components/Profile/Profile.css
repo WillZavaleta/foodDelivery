@@ -17,7 +17,8 @@
     gap: 25px;
     border-radius: 0 8px 8px 0;
     font-size: 14px;
-    animation: fadeIn 0.5s;
+    animation: fadeInLeft; 
+    animation-duration: 0.8s;
 }
 
 .profile-popup .cross{

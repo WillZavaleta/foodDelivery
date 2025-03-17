@@ -12,6 +12,7 @@ import MyOrders from './pages/MyOrders/MyOrders';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ToastContainer } from 'react-toastify';
 import Profile from './components/Profile/Profile';
+import 'animate.css';
 
 const App = () => {
 

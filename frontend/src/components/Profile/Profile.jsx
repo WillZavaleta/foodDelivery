@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Profile.css'
 import { assets } from '../../assets/assets'
 
 const Profile = ({setShowProfile}) => {
+    const [animationClose, setAnimationClose] = useState(false);
+
+    useEffect(()=>{
+        
+        const timeout = setTimeout(() => {
+            animationClose && setShowProfile(false)
+          }, 400); 
+      
+          return () => clearTimeout(timeout);
+    },[animationClose])
+
     return (
         <div className='profile-popup'>
-            <img className='cross' onClick={()=>setShowProfile(false)} src={assets.cross} alt="" />
-            <div className='container-profile'>
+            <img className='cross' onClick={()=>setAnimationClose(true)} src={assets.cross} alt="" />
+            <div className={`container-profile ${animationClose?'animate__animated animate__fadeOutLeft':''}`}>
                 <div className='profile-header'>
                 <div className='profile-circle'>
                 </div>

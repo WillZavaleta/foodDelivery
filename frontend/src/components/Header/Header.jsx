@@ -31,7 +31,7 @@ const Header = () => {
       <div className='header-contents'>
         <h2> Ordena tu comida favorita aquí!</h2>
         <p>¡Satisface tu antojo con un solo clic! En nuestra tienda virtual, encontrarás las mejores pizzas, pastas y postres listos para llegar a tu puerta en minutos. No esperes más, ¡ordena ahora y disfruta de la mejor comida sin salir de casa! </p>
-        <button href='#explore-menu'>Ver Menú</button>
+        <a href="#explore-menu"><button>Ver Menú</button></a>
       </div>
     </div>
   )

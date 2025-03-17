@@ -29,14 +29,14 @@ const Navbar = ({ setShowProfile }) => {
 
     return (
         <div className={`navbar ${navbar && 'menu-fixed'}`}>
-            <Link to="/"><img src={assets.logo} alt="" className='logo' /></Link>
-            <ul className='navbar-menu'>
+            <Link to="/"><img src={assets.logo} alt="" className='logo animate__animated animate__rubberBand animate__delay-1s' /></Link>
+            <ul className='navbar-menu animate__animated animate__bounceInLeft'>
                 <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>inicio</Link>
                 <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>menú</a>
                 {/* <a href='#app-download' onClick={()=>setMenu("mobile-app")} className={menu==="mobile-app"? "active":""}>mobile-app</a> */}
                 <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>contacto</a>
             </ul>
-            <div className='navbar-right'>
+            <div className='navbar-right animate__animated animate__bounceInLeft'>
                 {/* <img src={assets.search_icon} alt="" /> */}
                 <div className='navbar-search-icon'>
                     <Link to="/cart"><img src={assets.basket_icon} alt="" /></Link>
