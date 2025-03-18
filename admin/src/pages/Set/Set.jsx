@@ -27,7 +27,6 @@ const Set = ({ url }) => {
             setData({
                 tarifa: ""
             })
-            setImage(false)
             toast.success(response.data.message)
         }
         else {
