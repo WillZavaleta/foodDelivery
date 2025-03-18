@@ -1,4 +1,4 @@
-import setModel from "../models/setModel";
+import setModel from "../models/setModel.js";
 
 const updateTarifa = async (req,res) => {
     try {

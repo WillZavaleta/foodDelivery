@@ -1,5 +1,5 @@
 import express from "express"
-import { updateTarifa } from "../controllers/setController"
+import { updateTarifa } from "../controllers/setController.js"
 
 const setRouter = express.Router();
 
