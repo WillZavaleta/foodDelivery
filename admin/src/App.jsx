@@ -11,8 +11,8 @@ import Set from './pages/Set/Set'
 
 const App = () => {
 
-  // const url = "https://food-del-backend-raas.onrender.com"
-  const url = "http://localhost:4000"
+  const url = "https://food-del-backend-raas.onrender.com"
+  // const url = "http://localhost:4000"
 
   return (
     <div>
