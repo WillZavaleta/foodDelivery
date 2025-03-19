@@ -9,7 +9,8 @@ const StoreContextProvider = (props) => {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : {}; // Si hay datos, convertirlos a objeto
       });
-    const url = "https://food-del-backend-raas.onrender.com"
+    // const url = "https://food-del-backend-raas.onrender.com"
+    const url = "http://localhost:4000";
     const [token,setToken] = useState("");
     const [food_list,setFoodList] = useState([]);
 
@@ -60,6 +61,16 @@ const StoreContextProvider = (props) => {
         setCarItems(response.data.cartData);
     }
 
+    //will
+    const getTarifa = async () => {
+        let tarifa = 0;
+        const response = await axios.get(url + "/api/set/get");
+        if (response.data.success) {
+             tarifa = response.data.data[0]?.tarifa;   
+        }
+        return tarifa;
+    }
+
     useEffect(()=>{
         async function loadData() {
             await fetchFoodList();
@@ -80,7 +91,8 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         url,
         token,
-        setToken
+        setToken,
+        getTarifa
     }
     return (
         <StoreContext.Provider value = {contextValue}>

@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url, getTarifa } = useContext(StoreContext);
   const navigate = useNavigate();
+  const [tarifa, setTarifa] = useState(null);
   const [isOn, setIsOn] = useState(true);
   const [data, setData] = useState({
     firstName: "",
@@ -44,7 +45,7 @@ const Cart = () => {
       }
     });
 
-    message += `\n💰 *Total: $${isOn && getTotalCartAmount() > 0 ? getTotalCartAmount() + 40 : !isOn && getTotalCartAmount()}*`;
+    message += `\n💰 *Total: $${isOn && getTotalCartAmount() > 0 ? getTotalCartAmount() + tarifa : !isOn && getTotalCartAmount()}*`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -52,9 +53,18 @@ const Cart = () => {
     window.open(whatsappUrl, "_blank");
   };
 
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
+
   useEffect(() => {
-    console.log(data)
-  }, [data])
+    const fetchTarifa = async () => {
+      const value = await getTarifa();  // ✅ Obtienes el valor real
+      setTarifa(value);                // Asignas la tarifa real al estado
+    };
+
+    fetchTarifa();
+  }, []);
 
   return (
     <div className='cart'>
@@ -88,7 +98,7 @@ const Cart = () => {
         })}
       </div>
       <form onSubmit={sendOrderToWhatsApp}>
-      <div className='cart-bottom'>        
+        <div className='cart-bottom'>
           <div className='cart-left'>
             <h2>Información de entrega</h2>
             <div className='multi-fields'>
@@ -120,18 +130,18 @@ const Cart = () => {
               <hr />
               <div className='cart-total-details'>
                 <p>Tarifa de entrega</p>
-                <p>${isOn && getTotalCartAmount() > 0 ? 40 : !isOn && 0}</p>
+                <p>${isOn && getTotalCartAmount() > 0 ? tarifa : !isOn && 0}</p>
               </div>
               <hr />
               <div className='cart-total-details'>
                 <b>Total</b>
-                <b>${isOn && getTotalCartAmount() > 0 ? getTotalCartAmount() + 40 : !isOn && getTotalCartAmount()}</b>
+                <b>${isOn && getTotalCartAmount() > 0 ? getTotalCartAmount() + tarifa : !isOn && getTotalCartAmount()}</b>
               </div>
             </div>
             {/* <button onClick={() => navigate('/order')}>PROCCED TO CHECKOUT</button> */}
             <button type='submit'>PEDIR POR WHATSAPP</button>
-          </div>        
-        {/* <div className='cart-promocode'>
+          </div>
+          {/* <div className='cart-promocode'>
           <div>
             <p>If you have a promo code, Enter it here</p>
             <div className='cart-promocode-input'>
@@ -140,7 +150,7 @@ const Cart = () => {
             </div>
           </div>
         </div> */}
-      </div>
+        </div>
       </form>
     </div>
   )
