@@ -32,7 +32,7 @@
 }
 
 .profile-header{
-    height: 15rem; 
+    height: 13.2rem;
     background: url('/header-profile.jpg') no-repeat;
     background-size: contain;
     position: relative;
@@ -46,7 +46,7 @@
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
-    bottom:-25px;
+    bottom:-28px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .127);
     margin-left: 20px;
 }
@@ -54,7 +54,7 @@
 .profile-content{
     display: flex;
     flex-direction: column;
-    gap:25px;
+    gap:10px;
     margin: 20px;
     font-size: 16px;
 }
@@ -64,6 +64,24 @@
     margin-bottom: 10px;
 }
 
+.profile-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 110px;
+}
+.profile-title .dot{
+    background-color: green;
+    border-radius: 5px;
+    padding: 3px;
+    color: #ffff;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.profile-title .dotCerrado{
+    background-color: red;
+}
 
 .profile-social-icons{
     display: flex;
@@ -73,6 +91,18 @@
 
 .profile-contact p{
     margin-bottom: 10px;
+}
+
+.profile-horario-container{
+    margin-bottom: 5px;
+}
+
+.profile-horario-item{
+    display: grid;
+    grid-template-columns: 4fr 4fr 1fr 4fr;
+    align-items: center;
+    color: grey;
+    font-size: max(1vw,13px);
 }
 
 .profile-location{

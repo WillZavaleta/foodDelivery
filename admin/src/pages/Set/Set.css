@@ -1,11 +1,68 @@
-.settings{
+.settings-container {
     width: 70%;
-    margin-left: max(5vw,25px);
+    margin-left: max(5vw, 25px);
     margin-top: 50px;
     color: #6d6d6d;
     font-size: 16px;
+    gap: 20px;
 }
 
-.settings form{
+.settings-container form {
     gap: 20px;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.settings-group input,
+select {
+    padding: 10px;
+    max-width: 125px;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.save-btn {
+    width: 100px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.save-btn:hover {
+    background-color: tomato;
+}
+
+.form-horarios-container {
+    gap: 20px;
+}
+
+.showform {
+    opacity: 1;
+    height: auto;
+    transition: 0.8s;
+}
+
+.hideform {
+    height: 0px;
+    opacity: 0;
+}
+
+@media (max-width: 550px) {
+    .date-container {
+        flex-direction: column;
+    }
 }
