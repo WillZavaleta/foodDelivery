@@ -111,3 +111,10 @@
     align-items: center;
     justify-content: flex-start;
 }
+
+@media (max-width: 450px) {
+    .profile-content{
+        gap: 25px;
+    }
+}
+
