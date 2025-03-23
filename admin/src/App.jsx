@@ -12,8 +12,8 @@ import Login from './components/Login/Login'
 
 const App = () => {
 
-  // const url = "https://food-del-backend-raas.onrender.com"
-  const url = "http://localhost:4000";
+  const url = "https://food-del-backend-raas.onrender.com"
+  // const url = "http://localhost:4000";
   const [token, setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):"");
 
   useEffect(()=>{
