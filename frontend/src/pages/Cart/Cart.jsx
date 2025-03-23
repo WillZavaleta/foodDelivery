@@ -31,7 +31,7 @@ const Cart = () => {
 
     food_list.map((item, id) => {
       if (cartItems[item._id] > 0) {
-        message += `${id + 1}. *${item.name}* - Cantidad: ${cartItems[item._id]} - Precio: $${item.price * cartItems[item._id]}\n`;
+        message += `- *${item.name}* - Cantidad: ${cartItems[item._id]} - Precio: $${item.price * cartItems[item._id]}\n`;
       }
     });
 
@@ -51,6 +51,11 @@ const Cart = () => {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     window.open(whatsappUrl, "_blank");
+
+    //eliminar el carrito.. idea, preguntar si ya realizó el pedido o si desea regresar al carrito
+    localStorage.removeItem("cart");
+    navigate("/");
+
   };
 
   // useEffect(() => {

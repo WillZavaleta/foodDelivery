@@ -4,11 +4,32 @@
     align-items: center;
     padding: 8px 4%;
 }
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
 
 .navbar .logo{
     width: max(10%,80px);
 }
 
-.navbar .profile{
+.navbar-right .profile{
     width: 40px;
+}
+
+.navbar-right button{
+    padding: 8px 20px 8px 20px;
+    border: 1px solid tomato;
+    border-radius: 50px;
+    background-color: transparent;
+    font-size: 16px;
+    color:#6d6d6d;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.navbar-right button:hover{
+    background-color: tomato;
+    color: #ffff;
 }

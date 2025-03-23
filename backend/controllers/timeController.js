@@ -57,7 +57,7 @@ const getTimes = async (req,res) => {
 //obtener un horario 
 const getTimeDia = async (req, res)=> {
     const {dia} = req.query;
-    console.log(dia)
+    // console.log(dia)
     try {
         const time = await timeModel.findOne({dia:dia});
         res.json({success:true,data:time});
