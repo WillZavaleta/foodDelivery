@@ -11,6 +11,7 @@
 }
 
 .add-img-upload img{
+    cursor: pointer;
     width: 120px;
 }
 
@@ -36,9 +37,15 @@
     max-width: 120px;
     border: none;
     padding: 10px;
-    background-color: black;
+    background-color: tomato;
     color: white;
     cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.5s;
+}
+
+.add-btn:hover{
+    background-color: black;
 }
 
 

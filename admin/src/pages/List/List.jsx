@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './List.css'
 import axios from "axios"
 import { toast } from 'react-toastify'
+import { assets } from '../../assets/assets'
 
 const List = ({url}) => {
 
@@ -37,11 +38,11 @@ const List = ({url}) => {
       <p>All Foods List</p>
       <div className='list-table'>
         <div className='list-table-format title'>
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b>Action</b>
+          <b>Imagen</b>
+          <b>Nombre</b>
+          <b>Categoría</b>
+          <b>Precio</b>
+          <b>Acción</b>
         </div>
         {list.map((item,index)=>{
           return(
@@ -50,7 +51,7 @@ const List = ({url}) => {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price}</p>
-              <p onClick={()=>removeFood(item._id)} className='cursor'>X</p>
+              <p onClick={() => removeFood(item._id)} className='cursor delete'><img src={assets.cesto} alt="" /></p>
             </div>
           )
         })}

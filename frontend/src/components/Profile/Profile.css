@@ -17,7 +17,7 @@
     gap: 25px;
     border-radius: 0 8px 8px 0;
     font-size: 14px;
-    animation: fadeInLeft; 
+    animation: fadeInLeft; /*se llama de animate.css*/
     animation-duration: 0.8s;
 }
 

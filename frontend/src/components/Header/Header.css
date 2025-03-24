@@ -43,7 +43,7 @@
     color: white;
     font-weight: 500;
     padding: 1vw 2.3vw;
-    background-color: #323232;
+    background-color: tomato;
     font-size: max(1vw, 13px);
     border-radius: 50px;
     transition: all 0.6s;
@@ -51,7 +51,7 @@
 }
 
 .header-contents button:hover{
-    background-color: tomato;
+    background-color: #323232;
 }
 
 @media (max-width:1050px) {

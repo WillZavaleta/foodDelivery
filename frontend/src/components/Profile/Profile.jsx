@@ -7,16 +7,16 @@ const Profile = ({ setShowProfile }) => {
     const [animationClose, setAnimationClose] = useState(false);
     const { horarios, estadoActual } = useContext(StoreContext);
 
-     // ✅ Función para convertir a formato AM/PM
-     const formatAMPM = (time) => {
-        if (!time) return "";  
+    // ✅ Función para convertir a formato AM/PM
+    const formatAMPM = (time) => {
+        if (!time) return "";
         const [hours, minutes] = time.split(":").map(Number);
         const ampm = hours >= 12 ? "PM" : "AM";
-        const formattedHours = hours % 12 || 12;  
+        const formattedHours = hours % 12 || 12;
         return `${formattedHours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(estadoActual)
     })
 
@@ -48,17 +48,17 @@ const Profile = ({ setShowProfile }) => {
                         <img src={assets.social_in} alt="" />
                     </div>
                     <div className='profile-contact'>
-                        <p>tomato@gmail.com</p>
-                        <p>228 355 6682</p>
+                        <a href="mailto:zavaleta.will@gmail.com"><p>zavaleta.will@gmail.com</p></a>
+                        <a href="tel:522283556682"><p>228 355 6682</p></a>
                     </div>
                     <div className='profile-horario-container'>
                         {horarios.map((horario, id) => {
                             return (
                                 <div key={id} className='profile-horario-item'>
                                     <p>{horario.dia}</p>
-                                    <p>{horario.abierto?"🕒"+formatAMPM(horario.apertura1):""}</p>
-                                    <p>{horario.abierto?"-":"Cerrado"}</p>
-                                    <p>{horario.abierto?formatAMPM(horario.cierre1):""}</p>
+                                    <p>{horario.abierto ? "🕒" + formatAMPM(horario.apertura1) : ""}</p>
+                                    <p>{horario.abierto ? "-" : "Cerrado"}</p>
+                                    <p>{horario.abierto ? formatAMPM(horario.cierre1) : ""}</p>
                                 </div>
 
                             )
@@ -67,7 +67,9 @@ const Profile = ({ setShowProfile }) => {
                     <hr />
                     <div className='profile-location'>
                         <img src={assets.pin} alt="" />
-                        <p>Cómo llegar</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=19.432608,-99.133209" target="_blank">
+                            <p>Cómo llegar</p>
+                        </a>
                     </div>
                 </div>
             </div>

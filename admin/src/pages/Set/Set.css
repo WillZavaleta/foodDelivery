@@ -35,7 +35,7 @@ select {
     width: 100px;
     border: none;
     padding: 10px;
-    background-color: black;
+    background-color: tomato;
     color: white;
     border-radius: 50px;
     cursor: pointer;
@@ -43,7 +43,7 @@ select {
 }
 
 .save-btn:hover {
-    background-color: tomato;
+    background-color: black;
 }
 
 .form-horarios-container {

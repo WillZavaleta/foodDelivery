@@ -28,13 +28,13 @@ const Footer = () => {
                         <li>Política de privacidad</li>
                     </ul>
                     {/* <button onClick={() => navigate("/myorders")}>Admin</button> */}
-                    <button>Admin</button>
+                    <a href="https://tomato-admin-i9wq.onrender.com/" target='_blank'><button>Admin</button></a>
                 </div>
                 <div className='footer-content-right'>
                     <h2>Contacto</h2>
                     <ul>
-                        <li>228 355 6682</li>
-                        <li>zavaleta.will@gmail.com</li>
+                        <li><a href="tel:522283556682"><p>228 355 6682</p></a></li>
+                        <li><a href="mailto:zavaleta.will@gmail.com"><p>zavaleta.will@gmail.com</p></a></li>
                     </ul>
                     <div className='developer'>
                         <p>Desarrollado por:</p>

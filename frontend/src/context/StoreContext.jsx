@@ -77,7 +77,7 @@ const StoreContextProvider = (props) => {
             const response = await axios.get(url +"/api/time/getone",{params: {dia: diaActual}});
             if (response.data.success) {
                 const horario = response.data.data;
-                console.log("hoooy",horario);
+                //console.log("hoooy",horario);
                 // Verificar si está abierto o cerrado
                 verificarEstado(horario);
             }

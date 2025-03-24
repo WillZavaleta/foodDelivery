@@ -3,9 +3,10 @@ import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
+import Swal from "sweetalert2";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url, getTarifa } = useContext(StoreContext);
+  const { cartItems, food_list, setCarItems, removeFromCart, getTotalCartAmount, url, getTarifa } = useContext(StoreContext);
   const navigate = useNavigate();
   const [tarifa, setTarifa] = useState(null);
   const [isOn, setIsOn] = useState(true);
@@ -53,8 +54,23 @@ const Cart = () => {
     window.open(whatsappUrl, "_blank");
 
     //eliminar el carrito.. idea, preguntar si ya realizó el pedido o si desea regresar al carrito
-    localStorage.removeItem("cart");
-    navigate("/");
+    Swal.fire({
+      title: "¿Ya envió su pedido por WhatsApp?",
+      // text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#ff6347",
+      cancelButtonColor: "#323232",
+      confirmButtonText: "Sí, ya lo envié.",
+      cancelButtonText: "No, regresar al carrito."
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("cart");
+        setCarItems({});
+        navigate("/");
+      }
+    });
+
 
   };
 
@@ -65,7 +81,8 @@ const Cart = () => {
   useEffect(() => {
     const fetchTarifa = async () => {
       const value = await getTarifa();  // ✅ Obtienes el valor real
-      setTarifa(value);                // Asignas la tarifa real al estado
+      setTarifa(value);
+      // value === 0?setTarifa("gratis"):setTarifa(value);                // Asignas la tarifa real al estado
     };
 
     fetchTarifa();
@@ -135,7 +152,7 @@ const Cart = () => {
               <hr />
               <div className='cart-total-details'>
                 <p>Tarifa de entrega</p>
-                <p>${isOn && getTotalCartAmount() > 0 ? tarifa : !isOn && 0}</p>
+                <p>{isOn && getTotalCartAmount() > 0 ? (tarifa === 0 ? "Gratis" : "$ " + tarifa) : !isOn && "$ " + 0}</p>
               </div>
               <hr />
               <div className='cart-total-details'>
