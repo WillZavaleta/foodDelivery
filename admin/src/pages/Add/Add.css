@@ -1,5 +1,5 @@
 .add{
-    width: 70%;
+    width: 65%;
     margin-left: max(5vw,25px);
     margin-top: 50px;
     color: #6d6d6d;
@@ -21,6 +21,7 @@
 
 .add-product-name input, .add-product-description textarea{
     padding: 10px;
+    max-width: 240px;
 }
 
 .add-category-price{
@@ -29,7 +30,7 @@
 }
 
 .add-category-price select, .add-category-price input{
-    max-width: 120px;
+    max-width: 110px;
     padding: 10px;
 }
 

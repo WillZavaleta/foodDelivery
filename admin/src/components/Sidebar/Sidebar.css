@@ -33,3 +33,9 @@
         display: none;
     }
 }
+
+@media (max-width: 450px) {
+    .sidebar-option img{
+        width: 80%;
+    }
+}
