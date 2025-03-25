@@ -25,8 +25,14 @@ hr{
 
 .app-content{
   display: flex;
+  margin-top: 60px;
+  margin-bottom: 30px;
 }
-
+.content-area{
+  display: flex;
+  width: 100%;
+  margin-left: 14%;
+}
 .flex-col{
   display: flex;
   flex-direction: column;

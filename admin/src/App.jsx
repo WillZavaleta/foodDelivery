@@ -35,12 +35,14 @@ const App = () => {
           <hr />
           <div className='app-content'>
             <Sidebar />
+            <div className='content-area'>
             <Routes>
               <Route path='/add' element={<Add url={url} token={token} />} />
               <Route path='/list' element={<List url={url} token={token} />} />
               <Route path='/orders' element={<Orders url={url} token={token} />} />
               <Route path='/sett' element={<Set url={url} token={token} />} />
             </Routes>
+            </div>            
           </div>
         </>
       }
