@@ -4,7 +4,10 @@ import fs from 'fs'
 //add food item
 const addFood = async (req,res) => {
     
-    let image_filename = `${req.file.filename}`;
+    // let image_filename = `${req.file.filename}`;
+    //obtener el nombre de la imagen con su extensión
+    let image_filename = `${req.file.path}`;
+    console.log(image_filename)
 
     const food = new foodModel({
         name:req.body.name,
@@ -25,7 +28,7 @@ const addFood = async (req,res) => {
 //all food list
 const listFood = async (req,res) => {
     try {
-        const foods = await foodModel.find({});
+        const foods = await foodModel.find().sort({category: -1});
         res.json({success:true,data:foods})
     } catch (error) {
         console.log(error);
