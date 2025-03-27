@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import {assets} from "../../assets/assets";
 
 const Orders = ({url}) => {
-
+  const [loading, setLoading] = useState(true);
   const [orders,setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
@@ -33,9 +33,22 @@ const Orders = ({url}) => {
     fetchAllOrders();
   },[])
 
+  useEffect(()=>{
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  },[orders])
+
   return (
     <div className='order add'>
       <h3>Pedidos</h3>
+      {loading?(
+        <div className='spinner-container'>
+          <div className='spinner'></div>
+        </div>
+      ):(
       <div className='order-list'>
         {orders.map((order,index)=>(
           <div key={index} className='order-item'>
@@ -68,6 +81,7 @@ const Orders = ({url}) => {
           </div>
         ))}
       </div>
+      )}
     </div>
   )
 }

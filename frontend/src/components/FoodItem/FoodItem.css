@@ -61,6 +61,30 @@
     position: absolute;
     bottom: 15px;
     right: 15px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 50px;
+    background-color: tomato;
+    cursor: pointer;
+}
+.food-item-counter p{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+.food-item-counter img{
+    width: 45px;
+}
+
+/* .food-item-counter{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -71,4 +95,4 @@
 
 .food-item-counter img{
     width: 45px;
-}
+} */

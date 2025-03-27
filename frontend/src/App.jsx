@@ -25,7 +25,7 @@ const App = () => {
       <div className='app'>
         <ScrollToTop />
         <ToastContainer
-        position="bottom-right"
+        position="top-right"
         autoClose={3000}
         theme="dark"
         />
