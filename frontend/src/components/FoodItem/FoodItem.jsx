@@ -30,7 +30,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
                 {/* Botón para abrir el modal específico del ítem */}
                 {/* <button onClick={toggleModal}>Abrir</button> */}
                 {!cartItems[id]
-                    ? <img className='add' onClick={toggleModal} src={assets.add_icon_white} alt="" />
+                    ? <img className='add' onClick={toggleModal} src={assets.eye} alt="" />
                     : <div className='food-item-counter' onClick={toggleModal}>
                         <p>{cartItems[id]}</p>
                     </div>
