@@ -30,13 +30,19 @@ const Cart = () => {
     event.preventDefault();
     let message = "🚀 *Hola! Me gustaría ordenar lo siguiente:* 🚀\n\n";
 
-    food_list.map((item, id) => {
-      if (cartItems[item._id] > 0) {
-        message += `- *${item.name}* - Cantidad: ${cartItems[item._id]} - Precio: $${item.price * cartItems[item._id]}\n`;
+    food_list.forEach((item) => {
+      const cartItem = cartItems[item._id];
+
+      if (cartItem && Array.isArray(cartItem) && cartItem.length > 0) { 
+        
+        cartItem.forEach((variant) => {  // Iterar sobre cada variación
+        const orillaText = variant.conOrilla ? " con orilla de queso" : "";
+        message += `- *${item.name}*${orillaText} - Cantidad: ${variant.cantidad} - Precio: $${item.price * variant.cantidad}\n`;
+        })
       }
     });
 
-    [data].map((item, id) => {
+    [data].forEach((item) => {
       message += `\nA nombre de ${item.firstName + " " + item.lastName}.\n`;
       if (isOn) {
         message += `Con *envío a domicilio* en dirección: *${item.street}.*\n`
@@ -101,24 +107,47 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
+        {/* {food_list.map((item, index) => {
+          const cartItem = cartItems[item._id];  // Accede al objeto del carrito
+          if (cartItem) {
             return (
               <div key={index}>
                 <div className='cart-items-title cart-items-item'>
                   <img src={item.image} alt="" />
-                  {/* <img src={url + "/images/" + item.image} alt="" /> */}
-                  <p>{item.name}</p>
+                  <p>{item.name} {cartItem.conOrilla?" con orilla de queso":""}</p>
                   <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
+                  <p>{cartItem.cantidad}</p>
+                  <p>${item.price * cartItem.cantidad}</p>
                   <p onClick={() => removeFromCart(item._id)} className='cross'><img src={assets.cesto} alt="" /></p>
                 </div>
                 <hr />
               </div>
             )
           }
+        })} */}
+        {food_list.map((item, index) => {
+          const cartItem = cartItems[item._id];  // Accede al array de variaciones del carrito
+
+          if (cartItem && Array.isArray(cartItem) && cartItem.length > 0) {
+            return cartItem.map((variant, variantIndex) => (   // Iterar sobre cada variación
+              <div key={`${index}-${variantIndex}`}>
+                <div className='cart-items-title cart-items-item'>
+                  <img src={item.image} alt="" />
+                  <p>{item.name}{variant.conOrilla ? " con orilla de queso" : ""}</p>
+                  <p>${variant.conOrilla ? item.price + 15 : item.price}</p>
+                  <p>{variant.cantidad}</p>
+                  <p>${(variant.conOrilla ? (item.price + 15) : item.price) * variant.cantidad}</p>
+                  <p onClick={() => removeFromCart(item._id, variant.conOrilla)} className='cross'>
+                    <img src={assets.cesto} alt="" />
+                  </p>
+                </div>
+                <hr />
+              </div>
+            ));
+          }
+          return null;  // Si no hay item en el carrito, no renderiza nada
         })}
+
       </div>
       <form onSubmit={sendOrderToWhatsApp}>
         <div className='cart-bottom'>

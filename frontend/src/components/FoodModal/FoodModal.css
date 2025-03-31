@@ -62,6 +62,36 @@
     margin: 10px 0px;
 }
 
+.food-content .switch-container{
+    display: flex;
+    gap: 10px;
+}
+
+.food-content .etiquetas{
+    position: absolute;
+    bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.modal-cart-icon{
+    position: absolute;
+    bottom: 80px;
+    right: 23px;
+    cursor: pointer;
+}
+
+.modal-cart-icon .dot{
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
+}
+
 .add-food{
     position: absolute;
     display: flex;
