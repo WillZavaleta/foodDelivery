@@ -4,21 +4,21 @@ import { assets } from '../../assets/assets'
 import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
-const Navbar = ({ setShowProfile }) => {
+const Navbar = ({ setShowProfile, setShowlogin }) => {
     const [menu, setMenu] = useState("menu");
     // const [menuOpen, setMenuOpen] = useState(false);
     // const [burger_class, setBurgerClass] = useState("burgerBar unclicked")
     const [navbar, setNavbar] = useState(false)
-    const { getTotalCartAmount } = useContext(StoreContext);
-    // const {getTotalCartAmount,token,setToken} = useContext(StoreContext);
+    //const { getTotalCartAmount } = useContext(StoreContext);
+    const {getTotalCartAmount,token,setToken} = useContext(StoreContext);
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // const logout = () => {
-    //     localStorage.removeItem("token");
-    //     setToken("");
-    //     navigate("/");
-    // }
+    const logout = () => {
+        localStorage.removeItem("token");
+        setToken("");
+        navigate("/");
+    }
 
     //animación menu
     const changeNavbar = () => {
@@ -42,6 +42,16 @@ const Navbar = ({ setShowProfile }) => {
                     <Link to="/cart"><img src={assets.basket_icon} alt="" /></Link>
                     <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
                 </div>
+                {!token?<button onClick={()=>setShowlogin(true)}>Ingresar</button>
+                :<div className='navbar-profile'>
+                    <img src={assets.profile_icon} alt="" />
+                    <ul className='nav-profile-dropdown'>
+                        <li onClick={()=>navigate("/myorders")}><img src={assets.bag_icon} alt="" />Pedidos</li>
+                        <hr />
+                        <li onClick={logout}><img src={assets.logout_icon} alt="" />Salir</li>
+                    </ul>
+                </div>
+                }
                 <div className="menu" onClick={() => {
                     setShowProfile(true)
                     // setMenuOpen(!menuOpen)
@@ -51,17 +61,6 @@ const Navbar = ({ setShowProfile }) => {
                     <span></span>
                     <span></span>
                 </div>
-                {/* {!token?<button onClick={()=>setShowlogin(true)}>Admin</button>
-                :<div className='navbar-profile'>
-                    <img src={assets.profile_icon} alt="" />
-                    <ul className='nav-profile-dropdown'>
-                        <li onClick={()=>navigate("/myorders")}><img src={assets.bag_icon} alt="" />Orders</li>
-                        <hr />
-                        <li onClick={logout}><img src={assets.logout_icon} alt="" />Logout</li>
-                    </ul>
-                </div>
-                } */}
-
             </div>
         </div>
     )

@@ -29,7 +29,7 @@ const App = () => {
         autoClose={3000}
         theme="dark"
         />
-        <Navbar setShowProfile={setShowProfile} />
+        <Navbar setShowProfile={setShowProfile} setShowlogin={setShowlogin}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />

@@ -23,6 +23,10 @@ const Sidebar = () => {
                 <img src={assets.settings_icon} alt="" />
                 <p>Ajustes</p>
             </NavLink>
+            <NavLink to='/stripe' className='sidebar-option'>
+                <img src={assets.stripe_icon} alt="" />
+                <p>Stripe</p>
+            </NavLink>
         </div>
         
     </div>

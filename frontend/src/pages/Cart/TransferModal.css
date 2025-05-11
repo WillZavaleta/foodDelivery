@@ -1,0 +1,58 @@
+.transfer-window {
+    position: fixed;
+    z-index: 20 !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000090;
+    display: grid;
+}
+.transfer-window-container {
+    place-self: center;
+    width: max(25vw, 380px);
+    color: #808080;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    animation: fadeIn 0.5s;
+    border: 1px solid #ccc;
+}
+
+.transfer-window-container .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+}
+.transfer-window-container .title img{
+    width: 16px;
+    cursor: pointer;
+}
+
+.transfer-window-container .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .transfer-window-container .icon {
+    cursor: pointer;
+    color: #ff6347;
+    transition: color 0.3s;
+  }
+  
+  .transfer-window-container .icon:hover {
+    color: #e5533d;
+  }
+  
+  .transfer-window-container .copied {
+    color: tomato;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }

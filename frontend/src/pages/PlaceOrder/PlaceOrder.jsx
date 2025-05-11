@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 const PlaceOrder = () => {
 
-  const {getTotalCartAmount,token,food_list,cartItems,url} = useContext(StoreContext);
+  const {getTotalCartAmount,token,food_list,cartItems,getTarifa,url} = useContext(StoreContext);
+  const [tarifa, setTarifa] = useState(null);
 
   const [data,setData] = useState({
       firstName:"",
@@ -29,27 +30,64 @@ const PlaceOrder = () => {
   const placeOrder = async (event) => {
     event.preventDefault();
     let orderItems = [];
-    food_list.map((item)=>{
-      if (cartItems[item._id]>0) {
-        let itemInfo = item;
-        itemInfo["quantity"] = cartItems[item._id];
-        orderItems.push(itemInfo);
-      }
-    })
+
+    // Recorremos cada item en el carrito
+    Object.entries(cartItems).forEach(([itemId, variants]) => {
+        variants.forEach((variant) => {
+            let itemInfo = food_list.find((item) => item._id === itemId);
+            if (itemInfo) {
+                // Clonamos el objeto del item para evitar modificar el original
+                let newItem = { ...itemInfo };
+      
+                newItem["quantity"] = variant.cantidad;
+                newItem["conOrilla"] = variant.conOrilla; // Agregamos la variante
+
+                orderItems.push(newItem);
+            }
+        });
+    });
+
     let orderData = {
-      address:data,
-      items:orderItems,
-      amount:getTotalCartAmount()+35
-    }
-    let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+        address: data,
+        items: orderItems,
+        amount: getTotalCartAmount() + tarifa
+    };
+
+    let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
+
     if (response.data.success) {
-      const {session_url} = response.data;
-      window.location.replace(session_url);
+        const { session_url } = response.data;
+        window.location.replace(session_url);
+    } else {
+        alert("Error");
     }
-    else{
-      alert("Error");
-    }
-  }
+};
+
+
+  // const placeOrder = async (event) => {
+  //   event.preventDefault();
+  //   let orderItems = [];
+  //   food_list.map((item)=>{
+  //     if (cartItems[item._id]>0) {
+  //       let itemInfo = item;
+  //       itemInfo["quantity"] = cartItems[item._id];
+  //       orderItems.push(itemInfo);
+  //     }
+  //   })
+  //   let orderData = {
+  //     address:data,
+  //     items:orderItems,
+  //     amount:getTotalCartAmount()+35
+  //   }
+  //   let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+  //   if (response.data.success) {
+  //     const {session_url} = response.data;
+  //     window.location.replace(session_url);
+  //   }
+  //   else{
+  //     alert("Error");
+  //   }
+  // }
 
   //se ejecuta cuando hay cambio en el token de login
   const navigate = useNavigate();
@@ -61,6 +99,16 @@ const PlaceOrder = () => {
       navigate('/cart')
     }
   },[token])
+
+   useEffect(() => {
+      const fetchTarifa = async () => {
+        const value = await getTarifa();  // ✅ Obtienes el valor real
+        setTarifa(value);
+        // value === 0?setTarifa("gratis"):setTarifa(value);                // Asignas la tarifa real al estado
+      };
+  
+      fetchTarifa();
+    }, []);
 
   // useEffect(()=>{
   //   console.log(data)
@@ -97,12 +145,12 @@ const PlaceOrder = () => {
             <hr />
             <div className='cart-total-details'>
               <p>Tarifa de entrega</p>
-              <p>${getTotalCartAmount()===0?0:2}</p>
+              <p>${getTotalCartAmount()===0?0:tarifa}</p>
             </div>
             <hr />
             <div className='cart-total-details'>
               <b>Total</b>
-              <b>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</b>
+              <b>${getTotalCartAmount()===0?0:getTotalCartAmount()+tarifa}</b>
             </div>
           </div>
           <button type='submit'>PROCEDER AL PAGO</button>

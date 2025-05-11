@@ -1,5 +1,5 @@
 .my-orders{
-    margin: 50px 0px;
+    margin: 100px 0px;
 }
 
 .my-orders .container{
@@ -11,7 +11,7 @@
 
 .my-orders-order {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr 1.5fr;
     align-items: center;
     gap: 30px;
     font-size: 14px;
@@ -37,9 +37,20 @@
     border: none;
     padding: 12px 0px;
     border-radius: 4px;
-    background-color: #ffe1e1;
-    color: #454545;
+    background-color: tomato;
+    color: #fff;
     cursor: pointer;
+    transition: all 0.5s;
+}
+
+.my-orders-order button:hover{
+    background-color: black;
+}
+
+.my-orders-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 @media (max-width:900px) {

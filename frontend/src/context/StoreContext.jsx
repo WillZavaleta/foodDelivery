@@ -15,6 +15,7 @@ const StoreContextProvider = (props) => {
     const [food_list,setFoodList] = useState([]);
     const [horarios, setHorarios] = useState([]);
     const [estadoActual, setEstadoActual] = useState({});
+    const stripeAccountId = "acct_1RGzRCQtxJR0sKuC";//accountId del Stripe del negocio
 
     // const addToCart = async (itemId) => {
     //     if (!cartItems[itemId]) {
@@ -191,7 +192,7 @@ const StoreContextProvider = (props) => {
     
 
     const fetchFoodList = async () => {
-        const response = await axios.get(url+"/api/food/list")
+        const response = await axios.get(url+"/api/food/stockFood")
         setFoodList(response.data.data)
     }
 
@@ -292,7 +293,8 @@ const StoreContextProvider = (props) => {
         setToken,
         getTarifa,
         horarios,
-        estadoActual
+        estadoActual,
+        stripeAccountId
     }
     return (
         <StoreContext.Provider value = {contextValue}>

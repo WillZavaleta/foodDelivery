@@ -50,7 +50,7 @@ const Orders = ({url}) => {
         </div>
       ):(
       <div className='order-list'>
-        {orders.map((order,index)=>(
+        {orders?.map((order,index)=>(
           <div key={index} className='order-item'>
             <img src={assets.parcel_icon} alt="" />
             <div>
@@ -74,9 +74,9 @@ const Orders = ({url}) => {
             <p>Productos: {order.items.length}</p>
             <p>${order.amount}</p>
             <select onChange={(event)=>statusHandler(event,order._id)} value={order.status}>
-              <option value="Food Processing">Food Processing</option>
-              <option value="Out for delivery">Out for delivery</option>
-              <option value="Delivered">Delivered</option>
+              <option value="Procesando Pedido">Procesando Pedido</option>
+              <option value="En ruta">En ruta</option>
+              <option value="Entregado">Entregado</option>
             </select>
           </div>
         ))}

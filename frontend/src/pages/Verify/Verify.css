@@ -1,4 +1,5 @@
 .verify{
+    height: 50vh;
     min-width: 60vh;
     display: grid;
 }

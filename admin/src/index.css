@@ -17,6 +17,13 @@ a{
   color: inherit;
 }
 
+input:focus,
+textarea:focus,
+select:focus {
+  border: 2px solid tomato;
+  outline: none; /* opcional, para quitar el borde azul por defecto */
+}
+
 hr{
   border: none;
   height: 1px;
@@ -91,6 +98,39 @@ input:checked + .slider:before {
 }
 /*-------------------------------*/
 
+.stripe-result{
+  width: 80%;
+  margin-left: max(5vw, 25px);
+  margin-top: 50px;
+  color: #6d6d6d;
+  font-size: 16px;
+  gap: 25px;
+}
+
+.stripe-result h2{
+  margin-bottom: 20px;
+}
+
+.stripe-result p{
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.stripe-cuenta{
+  color: tomato;
+}
+
+.stripe-result button{
+  border: none;
+    padding: 12px;
+    width: 200px;
+    background-color: tomato;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
 /*SPINNER*/
 .spinner-container {
   display: flex;
@@ -111,4 +151,10 @@ input:checked + .slider:before {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 550px) {
+  .stripe-result p{
+      width: 90%;
+  }
 }

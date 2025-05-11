@@ -7,6 +7,7 @@ import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import setRouter from "./routes/setRoute.js"
 import timeRouter from "./routes/timeRoute.js"
+import negocioRouter from "./routes/negocioRoute.js"
 import 'dotenv/config.js'
 
 
@@ -30,6 +31,7 @@ app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
 app.use("/api/set",setRouter)
 app.use("/api/time",timeRouter)
+app.use("/api/stripe",negocioRouter)
 
 app.get("/",(req, res)=>{
     res.send("Api Working")
