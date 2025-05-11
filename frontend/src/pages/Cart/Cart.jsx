@@ -6,7 +6,7 @@ import { assets } from '../../assets/assets';
 import Swal from "sweetalert2";
 import axios from 'axios'
 import AddressAutocomplete from './AddressAutoComplete';
-import TransferModal from './transferModal';
+import TransferenciaModal from './TransferenciaModal';
 
 const Cart = () => {
   const { cartItems, food_list, setCarItems, removeFromCart, getTotalCartAmount, url, getTarifa, token, stripeAccountId } = useContext(StoreContext);
@@ -377,7 +377,7 @@ const Cart = () => {
       </form>
     </div>
     { isModalOpen && (
-      <TransferModal setIsModalOpen={setIsModalOpen} />
+      <TransferenciaModal setIsModalOpen={setIsModalOpen} />
     )
     }
   </>
