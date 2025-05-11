@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Copy } from "lucide-react";
-import './transferModal.css'
+import './TransferModal.css'
 import { assets } from '../../assets/assets';
 
 const TransferModal = ({ setIsModalOpen }) => {
