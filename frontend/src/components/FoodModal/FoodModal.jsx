@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './FoodModal.css'
 import { assets } from '../../assets/assets';
 import { useContext } from 'react';
@@ -6,10 +6,10 @@ import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodModal = ({ id, name, price, description, image, category, setIsModalOpen }) => {
+const FoodModal = ({ id, name, price, description, image, category, setIsModalOpen, isOpen }) => {
     const { cartItems, addToCart, removeFromCart, getTotalCartAmount } = useContext(StoreContext)
     const [animationClose, setAnimationClose] = useState(false);
-    const [isOn, setIsOn] = useState(false);
+    const [isOn, setIsOn] = useState(true);
 
     const add = () => {
         addToCart(id, isOn);
@@ -31,11 +31,33 @@ const FoodModal = ({ id, name, price, description, image, category, setIsModalOp
     const cantidadConOrilla = cartItems[id]?.find(item => item.conOrilla)?.cantidad || 0;
     const cantidadSinOrilla = cartItems[id]?.find(item => !item.conOrilla)?.cantidad || 0;
 
+    //Bloque para cerrar modal si da click fuera
+    const modalRef = useRef();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setAnimationClose(true); // cierra el modal si haces clic fuera
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen]);
+
+    if (!isOpen) return null;
+    ///////////////////////////////////////
+
 
     return (
         <div className='food-popup'>
             <img className='cross' onClick={() => { setAnimationClose(true) }} src={assets.cross} alt="" />
-            <div className={`container-food ${animationClose ? 'animate__animated animate__fadeOutRight' : ''}`}>
+            <div className={`container-food ${animationClose ? 'animate__animated animate__fadeOutRight' : ''}`} ref={modalRef}>
                 <div className='food-header'>
                     <img src={image} alt="" />
                 </div>

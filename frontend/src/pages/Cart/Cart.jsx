@@ -361,7 +361,7 @@ const Cart = () => {
             <div className='multi-buttons'>
               <button type='submit' value="whatsapp">PEDIR POR WHATSAPP</button>
               <button type="submit" value="stripe" className={paymentMeth === 'linea' && token ? "showbtn" : "hidebtn"}>PAGAR EN LÍNEA</button>
-              <button onClick={() => toggleModal()} className={paymentMeth === 'transferencia' ? "showbtn" : "hidebtn"}>TRANSFERIR</button>
+              <button type="button" onClick={() => toggleModal()} className={paymentMeth === 'transferencia' ? "showbtn" : "hidebtn"}>DATOS PARA TRANSFERIR</button>
             </div>
           </div>
           {/* <div className='cart-promocode'>
@@ -377,7 +377,7 @@ const Cart = () => {
       </form>
     </div>
     { isModalOpen && (
-      <TransferenciaModal setIsModalOpen={setIsModalOpen} />
+      <TransferenciaModal setIsModalOpen={setIsModalOpen} isOpen={isModalOpen} />
     )
     }
   </>

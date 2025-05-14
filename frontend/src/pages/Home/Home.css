@@ -1,0 +1,20 @@
+.navbar-search-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 19; /* Para asegurarte de que esté encima */
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 10px 10px 8px 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 5px;
+    top: -5px;
+    right: -5px;
+}

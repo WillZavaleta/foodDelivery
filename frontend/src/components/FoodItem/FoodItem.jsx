@@ -35,7 +35,7 @@ const FoodItem = ({ id, name, price, description, image, category }) => {
                         ? <div className='food-item-counter' onClick={toggleModal}>
                             <p>{cartItems[id].reduce((total, item) => total + item.cantidad, 0)}</p>
                         </div>
-                        : <img className='add' onClick={toggleModal} src={assets.eye} alt="" />
+                        : <img className='add' onClick={toggleModal} src={assets.lupa} alt="" />
                     }
                     {/* {!cartItems[id]
                     ? <img className='add' onClick={toggleModal} src={assets.eye} alt="" />
@@ -72,6 +72,7 @@ const FoodItem = ({ id, name, price, description, image, category }) => {
                     image={food_list.find(f => f._id === selectedId)?.image}
                     category={food_list.find(f => f._id === selectedId)?.category}
                     setIsModalOpen={setIsModalOpen}
+                    isOpen={isModalOpen}
                 />
             )}
         </>

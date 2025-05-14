@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { Copy } from "lucide-react";
 import './TransferenciaModal.css'
 import { assets } from '../../assets/assets';
 
-const TransferModal = ({ setIsModalOpen }) => {
+const TransferModal = ({ setIsModalOpen, isOpen }) => {
     const [copied, setCopied] = useState("");
 
     const handleCopy = (text, label) => {
@@ -12,9 +12,31 @@ const TransferModal = ({ setIsModalOpen }) => {
         setTimeout(() => setCopied(""), 2000);
     };
 
+    //Bloque para cerrar modal si da click fuera
+        const modalRef = useRef();
+    
+        useEffect(() => {
+            const handleClickOutside = (event) => {
+                if (modalRef.current && !modalRef.current.contains(event.target)) {
+                    setIsModalOpen(false); // cierra el modal si haces clic fuera
+                }
+            };
+    
+            if (isOpen) {
+                document.addEventListener('mousedown', handleClickOutside);
+            }
+    
+            return () => {
+                document.removeEventListener('mousedown', handleClickOutside);
+            };
+        }, [isOpen]);
+    
+         if (!isOpen) return null;
+        ///////////////////////////////////////
+
     return (
         <div className='transfer-window'>
-            <div className="transfer-window-container">
+            <div className="transfer-window-container" ref={modalRef}>
                 <div className='title'>
                     <h3>Datos Bancarios para Transferencia</h3>
                     <img className='cross' onClick={() => { setIsModalOpen(false) }} src={assets.cross_icon} alt="" />

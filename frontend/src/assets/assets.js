@@ -75,6 +75,7 @@ import tomato_profile from './tomato-profile.png'
 import cross from './cross.png'
 import willwebdev from './willwebdev.png'
 import eye from './eye.png'
+import lupa from './lupa.png'
 
 export const assets = {
     logo,
@@ -108,7 +109,8 @@ export const assets = {
     tomato_profile,
     cross,
     willwebdev,
-    eye
+    eye,
+    lupa
 }
 
 export const menu_list = [

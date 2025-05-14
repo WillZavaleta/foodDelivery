@@ -20,8 +20,8 @@ const App = () => {
   const [showProfile, setShowProfile] = useState(false)
   return (
     <>
-    {showLogin?<LoginPopup setShowlogin={setShowlogin}/>:<></>}
-    {showProfile?<Profile setShowProfile={setShowProfile}/>:<></>}
+    {showLogin?<LoginPopup setShowlogin={setShowlogin} isOpen={showLogin}/>:<></>}
+    {showProfile?<Profile setShowProfile={setShowProfile} isOpen={showProfile}/>:<></>}
       <div className='app'>
         <ScrollToTop />
         <ToastContainer

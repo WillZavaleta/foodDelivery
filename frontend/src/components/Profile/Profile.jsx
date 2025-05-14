@@ -1,11 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import './Profile.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext';
 
-const Profile = ({ setShowProfile }) => {
+const Profile = ({isOpen, setShowProfile }) => {
     const [animationClose, setAnimationClose] = useState(false);
     const { horarios, estadoActual } = useContext(StoreContext);
+    
+    //Bloque para cerrar modal si da click fuera
+    const modalRef = useRef();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setAnimationClose(true); // cierra el modal si haces clic fuera
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen]);
+
+     if (!isOpen) return null;
+    ///////////////////////////////////////
 
     // ✅ Función para convertir a formato AM/PM
     const formatAMPM = (time) => {
@@ -32,7 +54,7 @@ const Profile = ({ setShowProfile }) => {
     return (
         <div className='profile-popup'>
             <img className='cross' onClick={() => setAnimationClose(true)} src={assets.cross} alt="" />
-            <div className={`container-profile ${animationClose ? 'animate__animated animate__fadeOutLeft' : ''}`}>
+            <div className={`container-profile ${animationClose ? 'animate__animated animate__fadeOutLeft' : ''}`} ref={modalRef}>
                 <div className='profile-header'>
                     <div className='profile-circle'>
                     </div>
